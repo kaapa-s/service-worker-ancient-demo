@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>The Stone Shop - your favourite shop!</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand logo" href="#">The Stone Shop</a>
+            </div>
+
+            <a href="#/cart">
+                <div class="glyphicon glyphicon-shopping-cart cart pull-right products-amount-container"></div>
+            </a>
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container" id="app-container"></div>
+    <!-- /.container -->
+
+    <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Barney 2017</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            const cartItemsRenderer = (state) => {
+                if(state.products.length > 0) {
+                    return `<div class="products-amount-indicator">${state.products.length}</div>`;
+                }
+                else {
+                    return '';
+                }
+            };
+
+            const itemRenderer = (item) => {
+                return `<tr>
+                            <td class="cart-thumbnail"><img src="${item.thumbnail}" alt=""></td>
+                            <td>${item.name}</td>
+                            <td>${item.price}</td>
+                            <td><button type="button" class="close" aria-label="Close"><span aria-hidden="true">&times;</span></button></td>
+                        </tr>`;
+            };
+
+            const shoppingCartItemsRenderer = (products) => {
+                 return products.map((product) => itemRenderer(product)).join('');
+            };
+
+            const shoppingCartRenderer = (state) => {
+                debugger;
+                return `<div class="row">
+                            <div class="col-md-12">
+                                <div class="row">
+                                    <p class="lead">Shopping cart</p>
+                                </div>
+                                <div class="row">
+                                    <table class="table stripped">
+                                        <thead>
+                                            <tr>
+                                                <th>Thumbnail</th>
+                                                <th>Product name</th>
+                                                <th>Price</th>
+                                                <th></th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                            ${shoppingCartItemsRenderer(state.products)}
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>`;
+            };
+
+            const loaderRenderer = () => {
+                return `<div class="row text-center">
+                            <img src="/images/loader.gif">
+                        </div>`;
+            };
+
+            const productRenderer = (productInfo, id) => {
+                return `<div class="col-sm-4 col-lg-4 col-md-4">
+                            <div class="thumbnail">
+                                <img src="${productInfo.thumbnail}" alt="">
+                                <div class="caption">
+                                    <h4 class="pull-right">${productInfo.price}</h4>
+                                    <h4>${productInfo.name}</h4>
+                                    <p>${productInfo.description}</p>
+                                    <p><a href="" data-id="${id}" class="buy">Buy me!</a></p>
+                                </div>
+                                <div class="ratings">
+                                    <p class="pull-right">15 reviews</p>
+                                    <p>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                        <span class="glyphicon glyphicon-star"></span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>`;
+            };
+
+            const productsRenderer = (products) => {
+                return products.map((product, index) => productRenderer(product, index)).join('');
+            }
+
+            const homeViewRenderer = (state) => {
+                return `<div class="row">
+                            <div class="col-md-3">
+                                <p class="lead">Categories</p>
+                                <div class="list-group">
+                                    <a href="#" class="list-group-item">Sticks</a>
+                                    <a href="#" class="list-group-item">Stones</a>
+                                    <a href="#" class="list-group-item">Clubs</a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                <p>&nbsp;</p>
+                                <div class="row">
+                                    ${productsRenderer(state.homeState.products)}
+                                </div>
+                            </div>
+                        </div>`;
+            };
+
+
+            const fetchProducts = () => {
+                return fetch('/products').then((response) => response.json());
+            };
+
+
+            const views = {
+                cart: {
+                    renderer: shoppingCartRenderer
+                },
+                home: {
+                    loader: fetchProducts,
+                    renderer: homeViewRenderer
+                }
+            };
+
+            const appState = {
+                cartState: {
+                    products: []
+                }
+            };
+
+            function renderViewBasedOnWindowHash(appContainer, appState, loaderRenderer) {
+                const hash = window.location.hash.replace('#/', '') || 'home';
+                const view = views[hash];
+
+                if(view.loader) {
+                    appContainer.innerHTML = loaderRenderer();
+
+                    view.loader()
+                        .then(data => {
+                            appState[hash + 'State'] = data;
+                            return appState;
+                        })
+                        .then((state) => {
+                            appContainer.innerHTML = view.renderer(state);
+                        });
+                }
+                else {
+                    appContainer.innerHTML = view.renderer(appState[hash + 'State']);
+                }
+            }
+
+            const appContainer = document.querySelector('#app-container');
+            appContainer.innerHTML = loaderRenderer();
+
+            renderViewBasedOnWindowHash(appContainer, appState, loaderRenderer);
+
+            window.addEventListener('hashchange', () => {
+                renderViewBasedOnWindowHash(appContainer, appState, loaderRenderer);
+            });
+
+            appContainer.addEventListener('click', function (e) {
+
+                if(e.target.classList.contains('buy')) {
+                    e.preventDefault();
+                    const productId = parseInt(e.target.dataset['id'], 10); 
+                    const product = appState.homeState.products[productId];
+
+                    appState.cartState.products.push(product);
+
+                    document.querySelector('.products-amount-container').innerHTML = cartItemsRenderer(appState.cartState);
+                }
+            });
+
+        });
+
+    </script>
+
+</body>
+
+</html>

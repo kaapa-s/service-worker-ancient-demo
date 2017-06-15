@@ -1,0 +1,94 @@
+/*!
+ * Start Bootstrap - Shop Homepage (http://startbootstrap.com/)
+ * Copyright 2013-2016 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
+ */
+@font-face {
+  font-family: 'flintstone';
+  src: url('../fonts/flintstone.ttf');
+}
+
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
+}
+
+.slide-image {
+    width: 100%;
+}
+
+.carousel-holder {
+    margin-bottom: 30px;
+}
+
+.carousel-control,
+.item {
+    border-radius: 4px;
+}
+
+.caption {
+    height: 130px;
+    overflow: hidden;
+}
+
+.caption h4 {
+    white-space: nowrap;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 200px;
+}
+
+.ratings {
+    padding-right: 10px;
+    padding-left: 10px;
+    color: #d17581;
+}
+
+.thumbnail {
+    padding: 0;
+}
+
+.thumbnail .caption-full {
+    padding: 9px;
+    color: #333;
+}
+
+footer {
+    margin: 50px 0;
+}
+
+.logo, .lead {
+    font-family: 'flintstone';
+}
+
+.navbar-header .logo { 
+    color: #e8a433;
+    font-size: 25px;
+}
+
+.cart {
+    color: white;
+    cursor: pointer;
+    font-size: 34px;
+    padding: 8px 0px;
+}
+
+.cart-thumbnail img {
+    width: 200px;
+    height: 100px;
+}
+
+.products-amount-indicator {
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 4px 0px 0px 8px;
+    color: white;
+    top: 0;
+    right: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}
