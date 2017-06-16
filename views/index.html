@@ -54,7 +54,6 @@
     <!-- /.container -->
 
     <div class="container">
-
         <hr>
 
         <!-- Footer -->
@@ -70,6 +69,10 @@
     <!-- /.container -->
 
     <script>
+        navigator.serviceWorker.register('sw.js').then(() => {
+            console.log('[Service Worker] installed!');
+        });
+
         document.addEventListener('DOMContentLoaded', () => {
 
             const cartItemsRenderer = (state) => {
@@ -95,7 +98,6 @@
             };
 
             const shoppingCartRenderer = (state) => {
-                debugger;
                 return `<div class="row">
                             <div class="col-md-12">
                                 <div class="row">

@@ -5,7 +5,7 @@
  */
 @font-face {
   font-family: 'flintstone';
-  src: url('../fonts/flintstone.ttf');
+  src: url('/fonts/flintstone2.ttf') format('truetype');
 }
 
 body {
