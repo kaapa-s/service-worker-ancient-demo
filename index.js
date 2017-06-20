@@ -47,7 +47,8 @@ app.get('/products', (req, res) => {
     }, 2000);
 });
 
+const port = 3011;
 
-app.listen(3002, () => {
-    console.log('App started!');
+app.listen(port, () => {
+    console.log('App started!', port);
 });

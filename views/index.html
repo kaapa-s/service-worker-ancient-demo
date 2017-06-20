@@ -69,9 +69,9 @@
     <!-- /.container -->
 
     <script>
-        navigator.serviceWorker.register('sw.js').then(() => {
-            console.log('[Service Worker] installed!');
-        });
+        if(navigator.serviceWorker) {
+             navigator.serviceWorker.register('sw.js');
+        }
 
         document.addEventListener('DOMContentLoaded', () => {
 
