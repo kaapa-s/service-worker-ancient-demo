@@ -1,0 +1,25 @@
+1. Powiedziec stara prezentacje
+2. Pokazac jak utworzyc nowa aplikacje w angularze uzywajaca service workera
+3. Opisac groupPaths,
+    wyjasnic installMode,
+    wyjasnic updateMode
+
+4. Pokazac, ze juz wszystko fajnie dziala, nawet offline, ale nie mamy danych z api
+5. Pokazac, ze requesty z api tez mozna cachowac i dodac config
+    "dataGroups": [{
+    "name": "products-preformance",
+    "urls": [
+      "http://localhost:3011/products"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "3d",
+      "timeout": "1m",
+      "strategy": "performance"
+    }
+  }]
+
+  wyjasnic strategy: performance | freshness
+
+6. Pokazac kawalek kodu, ktory slucha czy pojawila sie nowa aplikacja
+7. Podsumowanie, powrot do prezentacji

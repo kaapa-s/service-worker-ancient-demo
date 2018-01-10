@@ -1,0 +1,53 @@
+{
+  "index": "/index.html",
+  "assetGroups": [{
+    "name": "app",
+    "installMode": "prefetch",
+    "resources": {
+      "files": [
+        "/favicon.ico",
+        "/index.html"
+      ],
+      "versionedFiles": [
+        "/*.bundle.css",
+        "/*.bundle.js",
+        "/*.chunk.js"
+      ]
+    }
+  }, {
+    "name": "assets",
+    "installMode": "lazy",
+    "updateMode": "prefetch",
+    "resources": {
+      "files": [
+        "/assets/**"
+      ],
+      "urls": [
+        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css",
+        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      ]
+    }
+  }, {
+    "name": "image-products",
+    "installMode": "lazy",
+    "updateMode": "lazy",
+    "resources": {
+      "urls": [
+        "http://localhost:3011/images/products/**"
+      ]
+    }
+  }],
+
+  "dataGroups": [{
+    "name": "products-preformance",
+    "urls": [
+      "http://localhost:3011/products"
+    ],
+    "cacheConfig": {
+      "maxSize": 100,
+      "maxAge": "3d",
+      "timeout": "1m",
+      "strategy": "performance"
+    }
+  }]
+}

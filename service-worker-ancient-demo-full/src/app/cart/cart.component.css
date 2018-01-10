@@ -1,0 +1,25 @@
+.cart {
+    color: white;
+    cursor: pointer;
+    font-size: 34px;
+    padding: 8px 0px;
+}
+
+.cart-thumbnail img {
+    width: 200px;
+    height: 100px;
+}
+
+.products-amount-indicator {
+    position: absolute;
+    background-color: red;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    padding: 4px 0px 0px 8px;
+    color: white;
+    top: 0;
+    right: 0;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 14px;
+}

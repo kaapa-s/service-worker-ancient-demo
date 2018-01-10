@@ -1,0 +1,8 @@
+.logo, .lead {
+    font-family: 'flintstone';
+}
+
+.navbar-header .logo { 
+    color: #e8a433;
+    font-size: 25px;
+}

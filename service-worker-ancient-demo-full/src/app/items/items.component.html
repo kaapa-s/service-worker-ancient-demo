@@ -1,0 +1,18 @@
+<div class="col-md-9">
+    <p>&nbsp;</p>
+    <div class="row">
+
+
+      <ng-container *ngIf="items | async; else loading">
+        <ng-container  *ngFor="let item of (items | async); let i = index;">
+          <app-item [product-info]="item" [product-id]="i"></app-item>
+        </ng-container>
+      </ng-container>
+
+      <ng-template #loading>
+          <div class="row text-center">
+            <img src="/assets/images/loader.gif">
+          </div>
+      </ng-template>
+    </div>
+</div>

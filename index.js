@@ -1,11 +1,31 @@
 #!/usr/bin/env node
 const express = require('express');
+const cors = require('cors');
 
 const app = express();
 
 // App config
+
+
+app.use(cors())
+
+// Add headers
+app.use(function (req, res, next) {
+
+res.header('Access-Control-Allow-Origin', req.get('Origin') || '*');
+  res.header('Access-Control-Allow-Credentials', 'true');
+  res.header('Access-Control-Allow-Methods', 'GET,HEAD,PUT,PATCH,POST,DELETE');
+  res.header('Access-Control-Expose-Headers', 'Content-Length');
+  res.header('Access-Control-Allow-Headers', 'Accept, Authorization, Content-Type, X-Requested-With, Range');
+  if (req.method === 'OPTIONS') {
+    return res.send(200);
+  } else {
+    return next();
+  }
+});
+
 app.use(express.static('static'));
-app.use('/', express.static(__dirname + '/'));
+app.use('/', express.static(__dirname + '/'));  
 
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
