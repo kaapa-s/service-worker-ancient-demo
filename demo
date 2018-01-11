@@ -1,0 +1,35 @@
+1. I have a regular e-commerce site, a online store
+2. As you can see some of the request take a long time
+3. And I can go and do some shopping here, everything works
+4. But when I kill my server, the website is unavailable
+5. And here comes service worker
+
+6. Service worker has a life cycle which contains of installation and activation
+7. Installation starts right after the service worker script is downloaded
+8. We can delay the installation part to cache the resources, we do it by
+8. And then the worker gets activated and you get the control over the HTTP requests your site makes.
+
+
+// install
+
+event.waitUntil(
+    caches.open(cacheName)
+      .then(function(cache) {
+        return cache.addAll(urlsToCache)
+      })
+  );
+
+// fetch
+   event.respondWith(
+      caches.match(event.request).then(function (response) {
+        return response || fetch(event.request);
+}))
+
+
+
+
+//
+
+    Dlaczego sw jest lepszy niz appchace
+    Wyjaśnić bardiej o co chodzi w demo
+    "...You know..."

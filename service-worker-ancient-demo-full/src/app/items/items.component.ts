@@ -4,8 +4,7 @@ import { ItemsService } from '../items.service';
 @Component({
   selector: 'app-items',
   templateUrl: './items.component.html',
-  styleUrls: ['./items.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./items.component.css']
 })
 export class ItemsComponent implements OnInit {
 
@@ -14,6 +13,8 @@ export class ItemsComponent implements OnInit {
   constructor(private itemsService: ItemsService) { }
 
   ngOnInit() {
-    this.items = this.itemsService.getItems();
+    this.itemsService.getItems().subscribe((data) => {
+      this.items = data;
+    })
   }
 }

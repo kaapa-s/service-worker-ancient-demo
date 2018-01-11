@@ -3,8 +3,8 @@
     <div class="row">
 
 
-      <ng-container *ngIf="items | async; else loading">
-        <ng-container  *ngFor="let item of (items | async); let i = index;">
+      <ng-container *ngIf="items?.length; else loading">
+        <ng-container  *ngFor="let item of items; let i = index;">
           <app-item [product-info]="item" [product-id]="i"></app-item>
         </ng-container>
       </ng-container>
